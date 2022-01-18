@@ -129,7 +129,7 @@ module.exports = {
   },
 
   devServer: {
-    headers: { 'Cache-Control': 'no-store' },
+    // headers: { 'Cache-Control': 'no-store' },
     disableHostCheck: true,
     proxy: {
       // proxy all requests to the server at IP:PORT as specified in the top-level config

@@ -4,7 +4,7 @@
     <!--modify-inventory(v-if="isUserLoaded")-->
     <footer class="col-12 expanded">
       <div class="row">
-        <div class="col-12 col-md-2">
+        <!-- <div class="col-12 col-md-2">
           <h3>
             <a
               href="https://itunes.apple.com/us/app/habitica/id994882113?ls=1&mt=8"
@@ -17,8 +17,8 @@
               target="_blank"
             >{{ $t('mobileAndroid') }}</a>
           </h3>
-        </div>
-        <div class="col-12 col-md-2">
+        </div> -->
+        <!-- <div class="col-12 col-md-2">
           <h3>{{ $t('footerCompany') }}</h3>
           <ul>
             <li>
@@ -39,23 +39,17 @@
               >{{ $t('tumblr') }}</a>
             </li>
             <li>
-              <router-link to="/static/faq">
-                {{ $t('FAQ') }}
-              </router-link>
-            </li>
-            <li>
               <a
                 href="https://habitica.fandom.com/wiki/Whats_New"
                 target="_blank"
               >{{ $t('oldNews') }}</a>
             </li>
-            <!-- Commenting out merch page see https://github.com/HabitRPG/habitica/issues/12039
+            Commenting out merch page see https://github.com/HabitRPG/habitica/issues/12039
             <li>
               <router-link to="/static/merch">
                 {{ $t('merch') }}
               </router-link>
             </li>
-            -->
             <li>
               <router-link to="/static/press-kit">
                 {{ $t('presskit') }}
@@ -67,8 +61,8 @@
               </router-link>
             </li>
           </ul>
-        </div>
-        <div class="col-12 col-md-2">
+        </div> -->
+        <div class="col-12 col-md-6">
           <h3>{{ $t('footerCommunity') }}</h3>
           <ul>
             <li>
@@ -82,7 +76,12 @@
                 {{ $t('hall') }}
               </router-link>
             </li>
-            <li v-if="user">
+            <li>
+              <router-link to="/static/faq">
+                {{ $t('FAQ') }}
+              </router-link>
+            </li>
+            <!-- <li v-if="user">
               <a
                 @click.prevent="openBugReportModal()"
                 target="_blank"
@@ -97,8 +96,8 @@
               >
                 {{ $t('reportBug') }}
               </a>
-            </li>
-            <li>
+            </li> -->
+            <!-- <li>
               <a
                 href="https://docs.google.com/forms/d/e/1FAIpQLScPhrwq_7P1C6PTrI3lbvTsvqGyTNnGzp1ugi1Ml0PFee_p5g/viewform?usp=sf_link"
                 target="_blank"
@@ -116,35 +115,108 @@
                 href="https://www.instagram.com/habitica"
                 target="_blank"
               >{{ $t('communityInstagram') }}</a>
-            </li>
+            </li> -->
           </ul>
         </div>
         <div class="col-12 col-md-6">
           <div class="row">
-            <div class="col-6">
+            <div class="col-12">
               <h3>{{ $t('footerDevs') }}</h3>
               <ul>
                 <li>
                   <a
-                    href="/apidoc"
+                    href="/groups/tavern"
                     target="_blank"
-                  >{{ $t('APIv3') }}</a>
+                  >
+                    {{ $t('reportBug') }}
+                  </a>
                 </li>
                 <li>
-                  <a
-                    :href="getDataDisplayToolUrl"
-                    target="_blank"
-                  >{{ $t('dataDisplayTool') }}</a>
-                </li>
-                <li>
-                  <a
-                    href="https://habitica.fandom.com/wiki/Guidance_for_Blacksmiths"
-                    target="_blank"
-                  >{{ $t('guidanceForBlacksmiths') }}</a>
+                  <!-- <div
+                    v-if="!IS_PRODUCTION && isUserLoaded"
+                    class="debug float-left"
+                  >
+                    <button
+                      class="btn btn-primary"
+                      @click="debugMenuShown = !debugMenuShown"
+                    >
+                      Toggle Debug Menu
+                    </button>
+                    <div
+                      v-if="debugMenuShown"
+                      class="debug-group"
+                    >
+                      <a
+                        class="btn btn-secondary"
+                        @click="setHealthLow()"
+                      >Health = 1</a>
+                      <a
+                        class="btn btn-secondary"
+                        @click="addMissedDay(1)"
+                      >+1 Missed Day</a>
+                      <a
+                        class="btn btn-secondary"
+                        @click="addMissedDay(2)"
+                      >+2 Missed Days</a>
+                      <a
+                        class="btn btn-secondary"
+                        @click="addMissedDay(8)"
+                      >+8 Missed Days</a>
+                      <a
+                        class="btn btn-secondary"
+                        @click="addMissedDay(32)"
+                      >+32 Missed Days</a>
+                      <a
+                        class="btn btn-secondary"
+                        @click="addTenGems()"
+                      >+10 Gems</a>
+                      <a
+                        class="btn btn-secondary"
+                        @click="addHourglass()"
+                      >+1 Mystic Hourglass</a>
+                      <a
+                        class="btn btn-secondary"
+                        @click="addGold()"
+                      >+500GP</a>
+                      <a
+                        class="btn btn-secondary"
+                        @click="plusTenHealth()"
+                      >+ 10HP</a>
+                      <a
+                        class="btn btn-secondary"
+                        @click="addMana()"
+                      >+MP</a>
+                      <a
+                        class="btn btn-secondary"
+                        @click="addLevelsAndGold()"
+                      >+Exp +GP +MP</a>
+                      <a
+                        class="btn btn-secondary"
+                        @click="addExp()"
+                      >+Exp</a>
+                      <a
+                        class="btn btn-secondary"
+                        @click="addOneLevel()"
+                      >+1 Level</a>
+                      <a
+                        class="btn btn-secondary"
+                        tooltip="+1000 to boss quests. 300 items to collection quests"
+                        @click="addQuestProgress()"
+                      >Quest Progress Up</a>
+                      <a
+                        class="btn btn-secondary"
+                        @click="makeAdmin()"
+                      >Make Admin</a>
+                      <a
+                        class="btn btn-secondary"
+                        @click="openModifyInventoryModal()"
+                      >Modify Inventory</a>
+                    </div>
+                  </div> -->
                 </li>
               </ul>
             </div>
-            <div class="col-6 social">
+            <!-- <div class="col-6 social">
               <h3>{{ $t('footerSocial') }}</h3>
               <div class="icons">
                 <a
@@ -178,41 +250,11 @@
                   ></div>
                 </a>
               </div>
-            </div>
+            </div> -->
           </div>
           <div class="row">
-            <div class="col-12 col-md-8">
+            <div class="col-12 col-md-12">
               {{ $t('donateText3') }}
-            </div>
-            <div class="col-12 col-md-4">
-              <button
-                v-if="user"
-                class="btn btn-contribute btn-front btn-flat"
-                @click="donate()"
-              >
-                <div
-                  class="svg-icon heart"
-                  v-html="icons.heart"
-                ></div>
-                <div class="text">
-                  {{ $t('companyDonate') }}
-                </div>
-              </button>
-              <div
-                v-else
-                class="btn btn-contribute btn-front btn-flat"
-              >
-                <a
-                  href="https://habitica.fandom.com/wiki/Contributing_to_Habitica"
-                  target="_blank"
-                >
-                  <div
-                    class="svg-icon heart"
-                    v-html="icons.heart"
-                  ></div>
-                  <div class="text">{{ $t('companyContribute') }}</div>
-                </a>
-              </div>
             </div>
           </div>
         </div>
@@ -224,88 +266,7 @@
       </div>
       <div class="row">
         <div class="col-12 col-md-5 text-center text-md-left">
-          © 2021 Habitica. All rights reserved.
-          <div
-            v-if="!IS_PRODUCTION && isUserLoaded"
-            class="debug float-left"
-          >
-            <button
-              class="btn btn-primary"
-              @click="debugMenuShown = !debugMenuShown"
-            >
-              Toggle Debug Menu
-            </button>
-            <div
-              v-if="debugMenuShown"
-              class="debug-group"
-            >
-              <a
-                class="btn btn-secondary"
-                @click="setHealthLow()"
-              >Health = 1</a>
-              <a
-                class="btn btn-secondary"
-                @click="addMissedDay(1)"
-              >+1 Missed Day</a>
-              <a
-                class="btn btn-secondary"
-                @click="addMissedDay(2)"
-              >+2 Missed Days</a>
-              <a
-                class="btn btn-secondary"
-                @click="addMissedDay(8)"
-              >+8 Missed Days</a>
-              <a
-                class="btn btn-secondary"
-                @click="addMissedDay(32)"
-              >+32 Missed Days</a>
-              <a
-                class="btn btn-secondary"
-                @click="addTenGems()"
-              >+10 Gems</a>
-              <a
-                class="btn btn-secondary"
-                @click="addHourglass()"
-              >+1 Mystic Hourglass</a>
-              <a
-                class="btn btn-secondary"
-                @click="addGold()"
-              >+500GP</a>
-              <a
-                class="btn btn-secondary"
-                @click="plusTenHealth()"
-              >+ 10HP</a>
-              <a
-                class="btn btn-secondary"
-                @click="addMana()"
-              >+MP</a>
-              <a
-                class="btn btn-secondary"
-                @click="addLevelsAndGold()"
-              >+Exp +GP +MP</a>
-              <a
-                class="btn btn-secondary"
-                @click="addExp()"
-              >+Exp</a>
-              <a
-                class="btn btn-secondary"
-                @click="addOneLevel()"
-              >+1 Level</a>
-              <a
-                class="btn btn-secondary"
-                tooltip="+1000 to boss quests. 300 items to collection quests"
-                @click="addQuestProgress()"
-              >Quest Progress Up</a>
-              <a
-                class="btn btn-secondary"
-                @click="makeAdmin()"
-              >Make Admin</a>
-              <a
-                class="btn btn-secondary"
-                @click="openModifyInventoryModal()"
-              >Modify Inventory</a>
-            </div>
-          </div>
+          Power by <a href="https://habitica.com/habitica">Habitica</a>.
         </div>
         <div class="col-12 col-md-2 text-center">
           <div

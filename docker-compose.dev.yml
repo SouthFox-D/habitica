@@ -41,6 +41,8 @@ services:
       - habitica
     ports:
       - "27017:27017"
+    volumes:
+      - /data/habitica:/data
 networks:
   habitica:
     driver: bridge

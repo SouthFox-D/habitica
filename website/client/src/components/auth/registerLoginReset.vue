@@ -19,7 +19,7 @@
           ></div>
         </div>
       </div>
-      <div
+      <!-- <div
         class="form-group row text-center"
         v-if="!registering"
       >
@@ -82,7 +82,7 @@
       </div>
       <div class="strike">
         <span>{{ $t('or') }}</span>
-      </div>
+      </div> -->
       <div
         v-if="registering"
         class="form-group"

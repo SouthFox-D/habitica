@@ -174,20 +174,20 @@ export default {
 
       setLocalSetting(CONSTANTS.savedAppStateValues.SAVED_APP_STATE, JSON.stringify(appState));
 
-      try {
-        const checkoutSessionResult = await stripeInstance.redirectToCheckout({
-          sessionId: response.data.data.sessionId,
-        });
-        if (checkoutSessionResult.error) {
-          console.error(checkoutSessionResult.error); // eslint-disable-line
-          alert(`Error while redirecting to Stripe: ${checkoutSessionResult.error.message}`);
-          throw checkoutSessionResult.error;
-        }
-      } catch (err) {
-        console.error('Error while redirecting to Stripe', err); // eslint-disable-line
-        alert(`Error while redirecting to Stripe: ${err.message}`);
-        throw err;
-      }
+      // try {
+      //   const checkoutSessionResult = await stripeInstance.redirectToCheckout({
+      //     sessionId: response.data.data.sessionId,
+      //   });
+      //   if (checkoutSessionResult.error) {
+      //     console.error(checkoutSessionResult.error); // eslint-disable-line
+      //     alert(`Error while redirecting to Stripe: ${checkoutSessionResult.error.message}`);
+      //     throw checkoutSessionResult.error;
+      //   }
+      // } catch (err) {
+      //   console.error('Error while redirecting to Stripe', err); // eslint-disable-line
+      //   alert(`Error while redirecting to Stripe: ${err.message}`);
+      //   throw err;
+      // }
     },
     async redirectToStripeEdit (config) {
       if (!stripeInstance) {

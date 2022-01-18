@@ -1,7 +1,7 @@
 import stripeModule from 'stripe';
 import nconf from 'nconf';
 
-let stripe = stripeModule(nconf.get('STRIPE_API_KEY'));
+let stripe = stripeModule('test');
 
 function setStripeApi (stripeInc) {
   stripe = stripeInc;

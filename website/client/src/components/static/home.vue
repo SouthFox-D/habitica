@@ -102,7 +102,7 @@
                 {{ $t('signup') }}
               </button>
             </form>
-            <div class="strike">
+            <!-- <div class="strike">
               <span>{{ $t('or') }}</span>
             </div>
             <div class="text-center">
@@ -126,7 +126,7 @@
                 ></div>
                 <span>{{ $t('signUpWithSocial', {social: 'Apple'}) }}</span>
               </button>
-            </div>
+            </div> -->
           </div>
           <div class="col-12">
             <div

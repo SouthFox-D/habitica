@@ -28,6 +28,10 @@ import {
 import highlightMentions from '../../libs/highlightMentions';
 import { handleGetMembersForChallenge } from '../../libs/challenges/handleGetMembersForChallenge';
 
+import {
+  disableCache,
+} from '../../middlewares/cache';
+
 const { achievements } = common;
 
 const api = {};
@@ -103,7 +107,7 @@ const api = {};
 api.getMember = {
   method: 'GET',
   url: '/members/:memberId',
-  middlewares: [],
+  middlewares: [disableCache], //in river?
   async handler (req, res) {
     req.checkParams('memberId', res.t('memberIdRequired')).notEmpty().isUUID();
 

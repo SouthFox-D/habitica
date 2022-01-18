@@ -1,20 +1,22 @@
 <template>
   <div class="payments-column mx-auto mt-auto">
-    <button
-      v-if="stripeAvailable"
-      class="btn btn-primary payment-button payment-item with-icon"
-      :class="{disabled}"
-      :disabled="disabled"
-      @click="stripeFn()"
-    >
-      <div
-        v-once
-        class="svg-icon color credit-card-icon"
-        v-html="icons.creditCardIcon"
-      ></div>
-      {{ $t('card') }}
-    </button>
-    <button
+    <div v-if="user.contributor.admin">
+      <button
+        v-if="stripeAvailable"
+        class="btn btn-primary payment-button payment-item with-icon"
+        :class="{disabled}"
+        :disabled="disabled"
+        @click="stripeFn()"
+      >
+        <div
+          v-once
+          class="svg-icon color credit-card-icon"
+          v-html="icons.creditCardIcon"
+        ></div>
+        {{ $t('card') }}
+      </button>
+    </div>
+    <!-- <button
       v-if="paypalAvailable"
       class="btn payment-item paypal-checkout payment-button"
       :class="{disabled}"
@@ -32,7 +34,7 @@
       class="payment-item"
       :disabled="disabled"
       :amazon-data="amazonData"
-    />
+    /> -->
   </div>
 </template>
 
@@ -83,12 +85,13 @@
 </style>
 
 <script>
-import amazonButton from '@/components/payments/buttons/amazon';
+// import amazonButton from '@/components/payments/buttons/amazon';
 import creditCardIcon from '@/assets/svg/credit-card-icon.svg';
+import { mapState } from '@/libs/store';
 
 export default {
   components: {
-    amazonButton,
+    // amazonButton,
   },
   props: {
     disabled: {
@@ -113,6 +116,7 @@ export default {
     };
   },
   computed: {
+    ...mapState({ user: 'user.data' }),
     stripeAvailable () {
       return typeof this.stripeFn === 'function';
     },
