@@ -241,3 +241,23 @@ jobs:
       env:
         CI: true
         NODE_ENV: production
+        
+  docker-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+    
+      - run: cp config.json.example config.json
+    
+      - name: Push to Docker Hub
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./Dockerfile-Dev 
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+          repository: southfox09/habitica
+          tags: latest
