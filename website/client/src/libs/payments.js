@@ -17,13 +17,13 @@ export function setup () { // eslint-disable-line import/prefer-default-export
   let firstScript = document.getElementsByTagName('script')[0];
   amazonScript.type = 'text/javascript';
   amazonScript.async = true;
-  amazonScript.src = `https://static-na.payments-amazon.com/OffAmazonPayments/us/${(process.env.AMAZON_PAYMENTS_MODE === 'sandbox' ? 'sandbox/' : '')}js/Widgets.js`;
+  // amazonScript.src = `https://static-na.payments-amazon.com/OffAmazonPayments/us/${(process.env.AMAZON_PAYMENTS_MODE === 'sandbox' ? 'sandbox/' : '')}js/Widgets.js`;
   firstScript.parentNode.insertBefore(amazonScript, firstScript);
 
   // Stripe
   const stripeScript = document.createElement('script');
   [firstScript] = document.getElementsByTagName('script');
   stripeScript.async = true;
-  stripeScript.src = 'https://js.stripe.com/v3/';
+  // stripeScript.src = 'https://js.stripe.com/v3/';
   firstScript.parentNode.insertBefore(stripeScript, firstScript);
 }
