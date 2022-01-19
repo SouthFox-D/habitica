@@ -170,39 +170,11 @@
           </div>
         </div>
       </div>
-      <div class="container-fluid">
-        <div
-          class="pixel-horizontal-3 svg-icon"
-          v-html="icons.pixelHorizontal3"
-        ></div>
-      </div>
     </div>
     <div
       id="call-to-action"
       class="purple-4"
     >
-      <div class="container featured">
-        <div class="row text-center">
-          <h3 class="col-12">
-            {{ $t('joinMany', {userCountInMillions}) }}
-          </h3>
-        </div>
-        <div class="row">
-          <div class="col-12 text-center">
-            <button
-              class="btn btn-primary btn-front join-button"
-              @click="playButtonClick()"
-            >
-              {{ $t('joinToday') }}
-            </button>
-          </div>
-        </div>
-        <div class="row featured">
-          <div class="col-12 text-center">
-            <strong>{{ $t('featuredIn') }}</strong>
-          </div>
-        </div>
-      </div>
       <div class="container-fluid featured">
         <div class="row">
           <div class="col-12 text-center">

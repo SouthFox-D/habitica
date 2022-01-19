@@ -226,17 +226,6 @@
               v-html="$t('alreadyHaveAccountLogin')"
             ></a>
           </router-link>
-          <router-link
-            v-if="!registering"
-            :to="{name: 'register'}"
-            exact="exact"
-          >
-            <a
-              v-once
-              class="toggle-link"
-              v-html="$t('dontHaveAccountSignup')"
-            ></a>
-          </router-link>
         </div>
       </div>
     </form>
