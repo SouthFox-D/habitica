@@ -118,6 +118,7 @@ async function registerLocal (req, res, { isV3 = false }) {
   email = email.toLowerCase();
   username = username.trim();
   const lowerCaseUsername = username.toLowerCase();
+  const hasUsers = Boolean(await User.findOne().exec());
 
   // Search for duplicates using lowercase version of username
   const user = await User.findOne({
@@ -175,7 +176,7 @@ async function registerLocal (req, res, { isV3 = false }) {
   if (req.query.groupInvite || req.query.partyInvite) {
     await _handleGroupInvitation(newUser, req.query.groupInvite || req.query.partyInvite);
   }
-
+  if (!hasUsers) { newUser.contributor.admin = true; }
   const savedUser = await newUser.save();
 
   let userToJSON;
