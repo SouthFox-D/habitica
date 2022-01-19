@@ -1,0 +1,42 @@
+version: "3"
+services:
+  client:
+    command: ["npm", "run", "client:dev"]
+    depends_on:
+      - server
+    environment:
+      - BASE_URL=http://server:3000
+    image: southfox09/habitica:latest
+    networks:
+      - habitica
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/usr/src/habitica
+      - /usr/src/habitica/node_modules
+      - /usr/src/habitica/website/client/node_modules
+  server:
+    command: ["npm", "start"]
+    depends_on:
+      - mongo
+    environment:
+      - NODE_DB_URI=mongodb://mongo/habitrpg
+    image: southfox09/habitica:latest
+    networks:
+      - habitica
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src/habitica
+      - /usr/src/habitica/node_modules
+  mongo:
+    image: mongo:3.6
+    networks:
+      - habitica
+    ports:
+      - "27017:27017"
+    volumes:
+      - /data/habitica:/data
+networks:
+  habitica:
+    driver: bridge

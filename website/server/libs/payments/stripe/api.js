@@ -1,5 +1,5 @@
 import stripeModule from 'stripe';
-import nconf from 'nconf';
+// import nconf from 'nconf';
 
 let stripe = stripeModule('test');
 

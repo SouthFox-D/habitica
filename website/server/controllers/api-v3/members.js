@@ -107,7 +107,7 @@ const api = {};
 api.getMember = {
   method: 'GET',
   url: '/members/:memberId',
-  middlewares: [disableCache], //in river?
+  middlewares: [disableCache],
   async handler (req, res) {
     req.checkParams('memberId', res.t('memberIdRequired')).notEmpty().isUUID();
 
