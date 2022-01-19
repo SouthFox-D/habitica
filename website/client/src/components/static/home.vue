@@ -14,7 +14,7 @@
     >
       <div class="container">
         <div class="row">
-          <div class="col-12 col-md-6 col-lg-6">
+          <div class="col-12 col-sm-6 col-md-6 col-lg-6 offset-sm-3">
             <img
               src="~@/assets/images/home/home-main@3x.png"
               width="357px"
