@@ -1,7 +1,6 @@
 import {
   generateUser,
   createAndPopulateGroup,
-  translate as t,
 } from '../../../../helpers/api-integration/v3';
 
 describe('POST /user/purchase/:type/:key', () => {
@@ -16,15 +15,6 @@ describe('POST /user/purchase/:type/:key', () => {
   });
 
   // More tests in common code unit tests
-
-  it('returns an error when key is not provided', async () => {
-    await expect(user.post('/user/purchase/gems/gem'))
-      .to.eventually.be.rejected.and.eql({
-        code: 401,
-        error: 'NotAuthorized',
-        message: t('mustSubscribeToPurchaseGems'),
-      });
-  });
 
   it('purchases a gem item', async () => {
     await user.post(`/user/purchase/${type}/${key}`);
@@ -88,15 +78,10 @@ describe('POST /user/purchase/:type/:key', () => {
       'purchased.plan.customerId': 'group-plan',
       'stats.gp': 1000,
     });
-    await expect(members[0].post('/user/purchase/gems/gem'))
-      .to.eventually.be.rejected.and.eql({
-        code: 401,
-        error: 'NotAuthorized',
-        message: t('groupPolicyCannotGetGems'),
-      });
+    await members[0].post('/user/purchase/gems/gem');
 
     await members[0].sync();
-    expect(members[0].balance).to.equal(oldBalance);
+    expect(members[0].balance).to.equal(oldBalance + 0.25);
   });
 
   describe('bulk purchasing', () => {
