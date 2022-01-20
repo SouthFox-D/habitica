@@ -132,8 +132,8 @@
                   </a>
                 </li>
                 <li>
-                  <!-- <div
-                    v-if="!IS_PRODUCTION && isUserLoaded"
+                  <div
+                    v-if="!IS_PRODUCTION && isUserLoaded && user.contributor.admin"
                     class="debug float-left"
                   >
                     <button
@@ -212,7 +212,7 @@
                         @click="openModifyInventoryModal()"
                       >Modify Inventory</a>
                     </div>
-                  </div> -->
+                  </div>
                 </li>
               </ul>
             </div>
