@@ -149,6 +149,13 @@ async function registerLocal (req, res, { isV3 = false }) {
         passwordHashMethod: 'bcrypt',
       },
     },
+    'purchased.plan': {
+      planId: 'basic',
+      customerId: 'habitrpg',
+      dateCreated: new Date(),
+      dateUpdated: new Date(),
+      gemsBought: 0,
+    },
     preferences: {
       language: req.language,
     },

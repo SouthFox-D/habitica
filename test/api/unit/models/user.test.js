@@ -519,13 +519,13 @@ describe('User Model', () => {
       expect(await user.canGetGems()).to.equal(true);
     });
 
-    it('returns false if user is part of a group with a subscription and canGetGems: false', async () => {
+    it('returns true if user is part of a group with a subscription and canGetGems: false', async () => {
       user.guilds.push(group._id);
       user.purchased.plan.customerId = 'group-plan';
       group.purchased.plan.customerId = 123;
       group.leaderOnly.getGems = true;
       await group.save();
-      expect(await user.canGetGems()).to.equal(false);
+      expect(await user.canGetGems()).to.equal(true);
     });
   });
 

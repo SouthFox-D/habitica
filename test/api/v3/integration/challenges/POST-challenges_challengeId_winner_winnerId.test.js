@@ -124,7 +124,7 @@ describe('POST /challenges/:challengeId/winner/:winnerId', () => {
       await expect(winningUser.sync()).to.eventually.have.property('balance', oldBalance + challenge.prize / 4);
     });
 
-    it('doesn\'t gives winner gems if group policy prevents it', async () => {
+    it('gives winner gems if group policy prevents it', async () => {
       const oldBalance = winningUser.balance;
       const oldLeaderBalance = (await groupLeader.sync()).balance;
 
@@ -140,8 +140,8 @@ describe('POST /challenges/:challengeId/winner/:winnerId', () => {
 
       await sleep(0.5);
 
-      await expect(winningUser.sync()).to.eventually.have.property('balance', oldBalance);
-      await expect(groupLeader.sync()).to.eventually.have.property('balance', oldLeaderBalance + challenge.prize / 4);
+      await expect(winningUser.sync()).to.eventually.have.property('balance', oldBalance + challenge.prize / 4);
+      await expect(groupLeader.sync()).to.eventually.have.property('balance', oldLeaderBalance);
     });
 
     it('doesn\'t refund gems to group leader', async () => {

@@ -72,16 +72,13 @@ describe('DELETE /user', () => {
       });
     });
 
-    it('returns an error if user has active subscription', async () => {
+    it('returns no error if user has active subscription', async () => {
       const userWithSubscription = await generateUser({ 'purchased.plan.customerId': 'fake-customer-id' });
 
-      await expect(userWithSubscription.del('/user', {
+      await userWithSubscription.del('/user', {
         password,
-      })).to.be.rejected.and.to.eventually.eql({
-        code: 401,
-        error: 'NotAuthorized',
-        message: t('cannotDeleteActiveAccount'),
       });
+      await expect(checkExistence('users', userWithSubscription._id)).to.eventually.eql(false);
     });
 
     it('deletes the user\'s tasks', async () => {
