@@ -31,7 +31,7 @@ services:
     networks:
       - habitica
     ports:
-      - "3000:3000"
+      - "127.0.0.1:3000:3000"
     volumes:
       - .:/usr/src/habitica
       - /usr/src/habitica/node_modules
@@ -40,7 +40,7 @@ services:
     networks:
       - habitica
     ports:
-      - "27017:27017"
+      - "127.0.0.1:27017:27017"
 networks:
   habitica:
     driver: bridge
