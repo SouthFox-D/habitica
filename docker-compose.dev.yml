@@ -39,8 +39,8 @@ services:
     image: mongo:3.6
     networks:
       - habitica
-    ports:
-      - "127.0.0.1:27017:27017"
+#    ports:
+#      - "127.0.0.1:27017:27017"
 networks:
   habitica:
     driver: bridge
