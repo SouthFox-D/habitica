@@ -1,7 +1,7 @@
 import {
   generateUser,
   generateGroup,
-  translate as t,
+  // translate as t,
 } from '../../../../../helpers/api-integration/v3';
 import stripePayments from '../../../../../../website/server/libs/payments/stripe';
 
@@ -12,14 +12,6 @@ describe('payments - stripe - #subscribeCancel', () => {
 
   beforeEach(async () => {
     user = await generateUser();
-  });
-
-  it('verifies credentials', async () => {
-    await expect(user.get(endpoint)).to.eventually.be.rejected.and.eql({
-      code: 401,
-      error: 'NotAuthorized',
-      message: t('missingSubscription'),
-    });
   });
 
   describe('success', () => {

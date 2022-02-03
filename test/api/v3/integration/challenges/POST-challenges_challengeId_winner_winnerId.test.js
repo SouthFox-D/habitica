@@ -140,7 +140,7 @@ describe('POST /challenges/:challengeId/winner/:winnerId', () => {
 
       await sleep(0.5);
 
-      await expect(winningUser.sync()).to.eventually.have.property('balance', oldBalance + challenge.prize / 4);
+      await expect(winningUser.sync()).to.eventually.have.property('balance', oldBalance + challenge.prize / 4 + 0.25);
       await expect(groupLeader.sync()).to.eventually.have.property('balance', oldLeaderBalance);
     });
 

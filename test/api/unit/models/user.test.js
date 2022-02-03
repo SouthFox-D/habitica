@@ -518,15 +518,6 @@ describe('User Model', () => {
       await group.save();
       expect(await user.canGetGems()).to.equal(true);
     });
-
-    // it('returns true if user is part of a group with a subscription and canGetGems: false', async () => {
-    //   user.guilds.push(group._id);
-    //   user.purchased.plan.customerId = 'group-plan';
-    //   group.purchased.plan.customerId = 123;
-    //   group.leaderOnly.getGems = true;
-    //   await group.save();
-    //   expect(await user.canGetGems()).to.equal(true);
-    });
   });
 
   context('hasNotCancelled', () => {

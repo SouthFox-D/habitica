@@ -116,23 +116,6 @@ describe('POST /chat/:chatId/flag', () => {
     /* eslint-ensable camelcase */
   });
 
-  it('Flags a chat when the author\'s account was deleted', async () => {
-    const deletedUser = await generateUser();
-    const { message } = await deletedUser.post(`/groups/${group._id}/chat`, { message: TEST_MESSAGE });
-    await deletedUser.del('/user', {
-      password: 'password',
-    });
-
-    const flagResult = await user.post(`/groups/${group._id}/chat/${message.id}/flag`);
-    expect(flagResult.flags[user._id]).to.equal(true);
-    expect(flagResult.flagCount).to.equal(1);
-
-    const groupWithFlags = await admin.get(`/groups/${group._id}`);
-
-    const messageToCheck = find(groupWithFlags.chat, { id: message.id });
-    expect(messageToCheck.flags[user._id]).to.equal(true);
-  });
-
   it('Flags a chat with a higher flag acount when an admin flags the message', async () => {
     const { message } = await user.post(`/groups/${group._id}/chat`, { message: TEST_MESSAGE });
 
