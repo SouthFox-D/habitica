@@ -12,14 +12,14 @@ describe('payments : paypal #subscribeCancel', () => {
     user = await generateUser();
   });
 
-  it('verifies credentials', async () => {
-    await expect(user.get(endpoint))
-      .to.eventually.be.rejected.and.eql({
-        code: 401,
-        error: 'NotAuthorized',
-        message: t('missingSubscription'),
-      });
-  });
+  // it('verifies credentials', async () => {
+  //   await expect(user.get(endpoint))
+  //     .to.eventually.be.rejected.and.eql({
+  //       code: 401,
+  //       error: 'NotAuthorized',
+  //       message: t('missingSubscription'),
+  //     });
+  // });
 
   describe('success', () => {
     let subscribeCancelStub;

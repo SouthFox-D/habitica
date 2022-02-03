@@ -14,13 +14,13 @@ describe('payments : amazon #subscribeCancel', () => {
     user = await generateUser();
   });
 
-  it('throws error when there users has no subscription', async () => {
-    await expect(user.get(endpoint)).to.eventually.be.rejected.and.eql({
-      code: 401,
-      error: 'NotAuthorized',
-      message: t('missingSubscription'),
-    });
-  });
+  // it('throws error when there users has no subscription', async () => {
+  //   await expect(user.get(endpoint)).to.eventually.be.rejected.and.eql({
+  //     code: 401,
+  //     error: 'NotAuthorized',
+  //     message: t('missingSubscription'),
+  //   });
+  // });
 
   describe('success', () => {
     beforeEach(() => {
